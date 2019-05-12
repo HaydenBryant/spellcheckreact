@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
+import {BrowserRouter, Route, Switch}  from "react-router-dom"
+import Navbar from "./components/Navbar"
+import Home from "./components/Home"
 
 class App extends Component {
-state = {
-  header: ""
-}
-
-getContent = () => {
-  fetch("/")
-  .then(res=> res.json())
-}
-
   render() {
     return (
-      <div className="App center">
-        <button className="red btn-floating btn-large scale-transition">Submit</button>
-
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+            <Switch>
+              <Route exact path="/" component={Home} />
+            </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
