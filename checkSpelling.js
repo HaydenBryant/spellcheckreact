@@ -8,6 +8,25 @@ function checkSpelling (input, dictionaryData) {
     return Promise.all(dbResults);
 }
 
-function 
+function checkSpellingOutput (dbResults, input) { 
+    var searchResult = {
+        searchArray: []
+    }
+
+    var i = 0;
+    var inputArr = input.split(" ");
+    var outputArr = [];
+
+    dbResults.map(searchWord => {
+        if (searchWord === null){
+
+        } else {
+
+        }
+    })
+
+
+
+}
 
 module.exports = { method: checkSpelling }
