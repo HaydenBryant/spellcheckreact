@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const MyMethods = require("./checkSpelling");
 const checkSpelling = MyMethods.method;
+const checkSpellingOutput = MyMethods.otherMethod;
 
 
 app.use(cors());
@@ -29,11 +30,11 @@ app.get("/test", (req, res) => {
 })
 
 app.post("/checked", (req, res) => {
-    console.log(req.body.userInput)
+    // console.log(req.body.userInput)
     checkSpelling(req.body.userInput, dictionaryData)
     .then((result) => {
         console.log(result);
-        // res.send(outputSpellCheck(result, req.body.userInput));
+        res.send(checkSpellingOutput(result, req.body.userInput));
     });
 })
 

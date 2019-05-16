@@ -10,23 +10,24 @@ function checkSpelling (input, dictionaryData) {
 
 function checkSpellingOutput (dbResults, input) { 
     var searchResult = {
-        searchArray: []
+        
     }
 
-    var i = 0;
     var inputArr = input.split(" ");
-    var outputArr = [];
 
     dbResults.map(searchWord => {
         if (searchWord === null){
-
+            searchResult.searchWord = false;
         } else {
-
+            searchResult.searchWord = true;
         }
-    })
+    });
 
-
+    return searchResult;
 
 }
 
-module.exports = { method: checkSpelling }
+module.exports = {
+    method: checkSpelling,
+    otherMethod: checkSpellingOutput
+};
