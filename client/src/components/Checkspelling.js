@@ -12,7 +12,7 @@ class SpellCheck extends Component {
         this.setState({ userInput: event.target.value })
     }
 
-   handleSubmit = event => {
+    handleSubmit = event => {
         event.preventDefault()
         const user = {
             userInput: this.state.userInput
@@ -25,17 +25,17 @@ class SpellCheck extends Component {
             },
             data: user,
         })
-            // .then(response => {
-            //     this.setState({ results: response.data.resultArr })
-            // })
-            // .catch(error => {
-            //     throw error;
-            // });
+            .then(response => {
+                this.setState({ results: response.data.searchWords });
+            })
+            .catch(error => {
+                throw error;
+            });
     }
 
 
-    render(){
-        return(
+    render() {
+        return (
             <div className="container">
                 <h3 className="center">Check Your Spelling</h3>
                 <form onSubmit={this.handleSubmit} >
@@ -46,9 +46,21 @@ class SpellCheck extends Component {
                     <button type="submit">Submit</button>
                 </form>
                 <br />
-                </ div>
-        )
-    }
-}
-
+                <label>Spell Check Results: </label>
+                <div className="Container">
+                        {this.state.results.map((word) => {
+                            let addedWordArray = []
+                            this.state.addWords.map(word => addedWordArray.push(word))
+                            if (word[1] === true || addedWordArray.indexOf(word[0]) !== -1) {
+                                return <span>{word[0]}</span>
+                            } else {
+                                return <span className="yellow">{word[0]}</span>
+                            }
+                         })}
+                    </div>
+                </div>
+                )
+            }
+        }
+        
 export default SpellCheck
